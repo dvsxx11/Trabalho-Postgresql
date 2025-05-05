@@ -1,0 +1,123 @@
+--1) e 2)
+-- CREATE TABLE CLIENTES (
+-- 	ID_CLIENTE SERIAL PRIMARY KEY,
+-- 	NOME VARCHAR(100) NOT NULL,
+-- 	EMAIL VARCHAR(100) UNIQUE NOT NULL,
+-- 	TELEFONE VARCHAR(15),
+-- 	CPF CHAR(13) UNIQUE NOT NULL CHECK (CPF ~ '^\d{11}$')
+-- );
+
+-- CREATE TABLE PRODUTOS (
+-- 	ID_PRODUTO SERIAL PRIMARY KEY,
+-- 	NOME VARCHAR(100) NOT NULL,
+-- 	PRECO NUMERIC(10, 2) NOT NULL CHECK (PRECO > 0),
+-- 	CATEGORIA VARCHAR(50) NOT NULL
+-- );
+-- ALTER TABLE produtos
+-- ADD COLUMN descricao TEXT;
+
+-- CREATE TABLE ESTOQUE (
+-- 	ID_ESTOQUE SERIAL PRIMARY KEY,
+-- 	ID_PRODUTO INT NOT NULL UNIQUE,
+-- 	QUANTIDADE INT DEFAULT 0 CHECK (QUANTIDADE >= 0),
+-- 	FOREIGN KEY (ID_PRODUTO) REFERENCES PRODUTOS (ID_PRODUTO)
+-- );
+
+-- CREATE TABLE FORMAS_PAGAMENTO (
+-- 	ID_FORMA_PAGAMENTO SERIAL PRIMARY KEY,
+-- 	DESCRICAO VARCHAR(50) NOT NULL UNIQUE
+-- );
+
+-- CREATE TABLE PEDIDOS (
+-- 	ID_PEDIDO SERIAL PRIMARY KEY,
+-- 	ID_CLIENTE INT NOT NULL,
+-- 	DATA_PEDIDO DATE NOT NULL DEFAULT CURRENT_DATE,
+-- 	ID_FORMA_PAGAMENTO INT NOT NULL,
+-- 	VALOR_TOTAL NUMERIC(10, 2) CHECK (VALOR_TOTAL >= 0),
+-- 	FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTES (ID_CLIENTE),
+-- 	FOREIGN KEY (ID_FORMA_PAGAMENTO) REFERENCES FORMAS_PAGAMENTO (ID_FORMA_PAGAMENTO)
+-- );
+
+-- CREATE TABLE ITENS_PEDIDO (
+-- 	ID_ITEM SERIAL PRIMARY KEY,
+-- 	ID_PEDIDO INT NOT NULL,
+-- 	ID_PRODUTO INT NOT NULL,
+-- 	QUANTIDADE INT NOT NULL CHECK (QUANTIDADE > 0),
+-- 	PRECO_UNITARIO NUMERIC(10, 2) NOT NULL CHECK (PRECO_UNITARIO > 0),
+-- 	FOREIGN KEY (ID_PEDIDO) REFERENCES PEDIDOS (ID_PEDIDO),
+-- 	FOREIGN KEY (ID_PRODUTO) REFERENCES PRODUTOS (ID_PRODUTO)
+-- );
+
+-- Insert into Clientes (nome, email, telefone, cpf) VALUES
+-- ('Davi Silva Soares', 'davi.silva@gmail.com', '86999670027', '06895347364'),
+-- ('Bruno Soares', 'bruno.soares@email.com', '8699804-4233', '14318778142'),
+-- ('Carlos Mendes', 'carlos.mendes@email.com', '8698801-5815', '18214817524'),
+-- ('Daniel Silva', 'daniel.silva@email.com', '8691851-1752', '14185118422'),
+-- ('Eduardo Alves', 'eduardo.alves@email.com', '8697182-5812', '12512534567'),
+-- ('Fernanda Rocha', 'fernanda.rocha@email.com', '8691852-5812', '09845623498'),
+-- ('Gabriel Costa', 'gabriel.costa@email.com', '8698015-8951', '08424623412'),
+-- ('Helena Dias', 'helena.dias@email.com', '8691245-4567', '67812435465'),
+-- ('Igor Santos', 'igor.santos@email.com', '8698102-7721', '67845713567'),
+-- ('Julia Freitas', 'julia.freitas@email.com', '8698805-1242', '15667523554');
+
+-- INSERT INTO produtos (nome, preco, categoria, descricao) VALUES
+-- ('Notebook ', 3500.00, 'Eletrônicos', 'Notebook i5 com 16GB RAM'),
+-- ('Smartphone Samsung', 2500.00, 'Eletrônicos', 'Tela 6.5", 128GB'),
+-- ('Mouse Logitech', 120.00, 'Acessórios', 'Mouse sem fio'),
+-- ('Teclado Mecânico', 300.00, 'Acessórios', 'RGB, switch red'),
+-- ('Monitor LG 24"', 900.00, 'Eletrônicos', 'Full HD, 144hz'),
+-- ('Cadeira Gamer', 1500.00, 'Móveis', 'Ergonômica com apoio para a lombar'),
+-- ('Impressora HP', 600.00, 'Eletrônicos', 'Multifuncional Wi-Fi'),
+-- ('Pen Drive 64GB', 50.00, 'Acessórios', 'USB 3.0'),
+-- ('HD Externo 1TB', 400.00, 'Acessórios', 'USB 3.0 portátil'),
+-- ('Webcam Logitech', 250.00, 'Acessórios', 'Full HD, microfone embutido');
+
+-- INSERT INTO estoque (id_produto, quantidade) VALUES
+-- (1, 10),
+-- (2, 15),
+-- (3, 50),
+-- (4, 30),
+-- (5, 20),
+-- (6, 8),
+-- (7, 12),
+-- (8, 60),
+-- (9, 25),
+-- (10, 18);
+
+-- INSERT INTO formas_pagamento (descricao) VALUES
+-- ('Cartão de Crédito'),
+-- ('Cartão de Débito'),
+-- ('Pix'),
+-- ('Boleto Bancário'),
+-- ('Dinheiro'),
+-- ('Cheque'),
+-- ('Transferência Bancária'),
+-- ('Vale Compra'),
+-- ('Crédito Loja'),
+-- ('Pagamento Digital');
+
+-- INSERT INTO pedidos (id_cliente, id_forma_pagamento, valor_total, data_pedido)
+-- VALUES
+-- (91, 61, 3500.00, '2025-04-01'),
+-- (92, 63, 120.00, '2025-04-02'),
+-- (93, 62, 2500.00, '2025-04-03'),
+-- (94, 65, 300.00, '2025-04-04'),
+-- (95, 61, 900.00, '2025-04-05'),
+-- (96, 63, 1500.00, '2025-04-06'),
+-- (97, 62, 650.00, '2025-04-07'),
+-- (98, 64, 50.00, '2025-04-08'),
+-- (99, 61, 400.00, '2025-04-09'),
+-- (100,65, 250.00, '2025-04-10');
+
+
+-- INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario) VALUES
+-- (53, 1, 1, 3500.00),
+-- (54, 3, 1, 120.00),
+-- (55, 2, 1, 2500.00),
+-- (56, 4, 1, 300.00),
+-- (57, 5, 1, 900.00),
+-- (58, 6, 1, 1500.00),
+-- (59, 7, 1, 650.00),
+-- (60, 8, 1, 50.00),
+-- (61, 9, 1, 400.00),
+-- (62, 10, 1, 250.00);
