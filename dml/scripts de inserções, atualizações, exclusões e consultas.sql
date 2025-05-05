@@ -40,8 +40,10 @@
 -- GROUP BY c.nome
 -- HAVING SUM(p.valor_total) > 1000;
 
--- SELECT nome, preco FROM produtos
--- ORDER BY preco DESC;
+-- SELECT DISTINCT nome, preco 
+--FROM produtos
+--ORDER BY preco DESC;
+
 
 -- SELECT
 --     COUNT(*) AS total_produtos,
