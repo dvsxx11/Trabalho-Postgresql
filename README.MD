@@ -13,3 +13,5 @@ O cenário escolhido é um Sistema de Vendas para Loja:
 - Pedidos: Registro dos pedidos realizados pelos clientes, incluindo os produtos comprados, a forma de pagamento e o valor total.
 - Itens de Pedido: Relacionamento entre pedidos e os produtos comprados, com a quantidade e preço de cada produto.
 
+Link do video:
+https://drive.google.com/file/d/1lo9YWDiLK_WJ-iBI5Nd4FdbcZ-NDK-35/view?usp=drive_link
